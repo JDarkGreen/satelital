@@ -8,6 +8,8 @@
 /***************************************************************************************/
 
 $satelital_red : #FF141F
+$satelital_gray: #C7C7C7
+
 
 /***************************************************************************************/
 /**-------------------------- RESET --------------------------------------------------**/
@@ -63,6 +65,14 @@ body,html
 //++Posicion Relativa
 .relative
 	position: relative
+
+//+Textos
+//++ Titulos en Comun - Secciones
+.pageCommon__section-title
+	color      : $satelital_red
+	font-size  : 25px 
+	font-weight: 600
+	margin     : 0 auto 18px 
 
 /***************************************************************************************/
 /**- HEADER   -------------------------------------------**/
@@ -120,22 +130,57 @@ body,html
 
 //Banner de Presentación
 .pageInicio__banner-presentation
-	background     : url('../images/pages/inicio/bg-fondo-inicio.png') no-repeat
+	background     : url('../images/pages/inicio/incio_baner_superior_service_satelital_lima.png') no-repeat
 	background-size: cover 
 	min-height     : 537px 
 
-	//Seccion telefonos
-	.pageInicio__phones
-		position   : absolute
-		top        : 86px
-		z-index    : 99999999999
-		h2,p 
-			font-size  : 30px 
-			font-weight: 700 
-			margin     : 0 auto
-		//Titulo
-		h2
+//Seccion telefonos
+.pageInicio__phones
+	position   : absolute
+	top        : 86px
+	z-index    : 99999999999
+	h2,p 
+		font-size  : 30px 
+		font-weight: 700 
+		margin     : 0 auto
+	//Titulo
+	h2
+		color : $satelital_red
+
+//Sección Vehiculos Descripcion
+.pageInicio__vehiculares
+	position: absolute 
+	right   : 0
+	top     : 86px 
+	//Titulo
+	h2
+		span 
 			color : $satelital_red
+	
+//Sección de Servicios Home - Portada
+.pageInicio__slider-servicios
+	margin: 34px auto 47px
+
+	//Item de Este carousel
+	.item-servicio
+		border : 1px solid $satelital_gray
+		padding: 16px 14px
+		//Imagen
+		figure 
+			+border-radius( 50% )
+			-webkit-mask-image: -webkit-radial-gradient(white, black)
+			border            : 4px solid $satelital_red
+			margin            : 0 auto 
+			max-width         : 200px
+			overflow          : hidden
+			img 
+				height: auto !important
+				+transition( all 500ms ease )
+			//Hover image
+			&:hover 
+				img 
+					+scale( 1.2 )
+
 
 //Carousel de Inicio
 .pageInicio__slider

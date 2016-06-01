@@ -8,44 +8,44 @@
 <!-- Banner Home de Presentación -->
 <section class="pageInicio__banner-presentation relative">
 	<div class="container">
-
-		<!-- Seccion Telefonos -->
-		<section class="pageInicio__phones text-xs-center">
-			<!-- Titulo --> <h2 class="text-capitalize"><?php _e('llámenos:',LANG); ?></h2>
-			<!-- Telefonos --> 
-			<?php if( isset($options['contact_tel'] ) && !empty($options['contact_tel'] ) ) : ?>
-				<p><?= $options['contact_tel']; ?></p>
-			<?php endif; ?>
-			<?php if( isset($options['contact_cel'] ) && !empty($options['contact_cel'] ) ) : ?>
-				<p><?= $options['contact_cel']; ?></p>
-			<?php endif; ?>
-
-		</section> <!-- /.pageInicio__phones -->
-
-		<!-- Seccion - Soluciones Vehiculares  -->
-		<section class="pageInicio__vehiculares">
-			<!-- Titulo --> <h2 class="text-uppercase"><?php _e('soluciones',LANG); ?>
-				<span><?php _e('vehiculares',LANG) ?></span>
-			</h2>
-			<!-- Contenido -->
-			<div class="pageInicio__vehiculares__content">
-				<!-- Titulo --> <h3 class="text-uppercase"><?php _e('conductores profesionales a su servicio' , LANG ); ?> </h3>
-				<!-- Slogan --> <p><?php _e('Calidad, experiencia y seguridad'); ?></p>
-
-				<!-- Salto de linea --> <br/>
-
-				<p><?php _e('Brindamos los servicios:' ); ?></p>
-				<!-- Obtener los servicios -->
-				<div class="pageInicio__vehiculares__services">
-					Chofer de Reemplazo , Conductores para empresas , Valet Parking ,
-					Traslados a Aeropuerto, Courier y Grúa.
-				</div> <!-- /. -->
-			</div> <!-- /.pageInicio__vehiculares__content -->
-
-		</section> <!-- /.pageInicio__vehiculares -->
-
 	</div> <!-- /.container -->
 </section> <!-- /.pageInicio__banner-presentation -->
+
+<!-- Sección de servicios carousel en el Home  -->
+
+<section class="pageInicio__slider-servicios relative">
+	<div class="container">
+		
+		<!-- Titulo de Seccion  --> <h2 class="pageCommon__section-title text-xs-center">
+			<?php _e('Nuestros Servicios' , LANG ); ?>
+		</h2>
+
+		<!-- Wrapper contenedor de items -->
+		<div class="js-carousel-gallery" data-items="3" data-margins="16">
+			<?php  /* Extraer todo los servicios disponibles */ 
+				$args = array(
+					'order'          => 'ASC',
+					'orderby'        => 'menu_order',
+					'post_status'    => 'publish',
+					'post_type'      => 'servicio',
+					'posts_per_page' => -1,
+				);
+				$servicios = get_posts( $args );
+				if( !empty($servicios) ) : foreach( $servicios as $servicio ) : 
+			?> <!-- Item Articulo -->
+				<article class="item-servicio">
+					<!-- Imagen  --> <figure><?= get_the_post_thumbnail( $servicio->ID , 'full' , array('img-fluid center-block') ); ?></figure>
+					<!-- titulo --> <h3 class="text-uppercase"><?php _e( $servicio->post_title , LANG ); ?></h3>
+					<!-- Extracto --> <?= apply_filters('the_content' , $servicio->post_excerpt ); ?>
+					<!-- Botón ver más --> <a href="#" class="pageCommun__btn-read-more">
+						<?php _e( "click aquí" , LANG ); ?>
+					</a>
+				</article> <!-- /.item servicio -->
+			<?php endforeach; else: echo "Actualizando Contenido"; endif; ?>
+		</div> <!-- /. js-carousel-gallery -->
+		<!-- Flechas -->
+	</div> <!-- /.container -->
+</section> <!-- /.pageInicio__slider-servicios -->
 
 <!-- Incluir Banner de Portada -->
 <?php  
