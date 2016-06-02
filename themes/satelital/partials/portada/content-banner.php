@@ -15,7 +15,15 @@
 
 ?>
 <section id="carousel-home" class="pageInicio__slider carousel slide" data-ride="carousel">
+
+	<!-- Dots o thumbnails para  -->
+	<ol class="carousel-indicators">
+			<?php $j = 0; while( $the_query->have_posts() ) : $the_query->the_post(); ?> 
+    	<li data-target="#carousel-home" data-slide-to="<?= $j; ?>" class="<?= $j == 0 ? 'active' : '' ?>"></li>	
+			<?php $j++; endwhile; wp_reset_postdata(); ?>
+  </ol>
   
+  <!-- Wrapper por el carousel -->
   <div class="carousel-inner" role="listbox">
 		<?php while( $the_query->have_posts() ) : $the_query->the_post(); ?> 
 	    <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
