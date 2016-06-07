@@ -1,92 +1,103 @@
-<?php 
-/* Parcial que incluye la plantilla 
-	de articulos destacados y el facebook en caso de tenerlo
-*/ ?>
-
-<!-- /**************************************************************/ -->
-<!-- /*++++++++++++++++ MISCELANEO +++++++++++++++++++++++++++++++*/ -->
-<!-- /**************************************************************/ -->
-
+<!-- Sección Miscelanea -->
 <section class="pageInicio__miscelaneo">
-	
-	<section class="container">
-		<div class="row">
+	<div class="container">
+		<div class="row text-xs-center">
+			<div class="col-xs-6">
+				<!-- Titulo --> <h2 class="pageCommon__section-title"><?php _e('Blog' , LANG ); ?></h2>
+				<!-- Galería de blog -->
+				<section id="pageInicio__blog-gallery" class="pageInicio__blog-gallery js-carousel-gallery" data-items="2" data-margins="61" data-dots="true">
+					<?php  
+						/* Extraer los 8 ultimos posts */
+						$args = array(
+							'order'          => 'DESC',
+							'orderby'        => 'date',
+							'post_status'    => 'publish',
+							'posts_per_page' => -1,
+						);
+						$articulos = get_posts( $args );
+						foreach( $articulos as $articulo ) : 
+					?> <!-- Articulos  -->
+						<article class="item-blog text-xs-left">
+							<!-- Imagen --> <figure>
+							<?php if( has_post_thumbnail($articulo->ID) ) : 
+								echo get_the_post_thumbnail($articulo->ID ,'full', array('class'=>'img-fluid') );
+								endif;
+							?>
+							</figure>
+							<!-- Titulo -->
+							<h2 class="item-blog__title text-capitalize"><?php _e( $articulo->post_title , LANG ); ?></h2>
+							<!-- Extracto -->
+							<?= wp_trim_words($articulo->post_content,'15',''); ?>
+							<!-- Botón al artículo -->
+							<a href="<?= get_permalink($articulo->ID); ?>" class="text-to-link"><?php _e('Leer más', LANG ); ?></a>
 
-			<!-- Seccion de Articulos -->
-			<section class="sectionPage__articles col-xs-12 col-sm-8">
-
-				<!-- Titulo -->
-				<h2 class="PageCommon__subtitle text-uppercase"><?php _e('Artículos', LANG ); ?></h2>
-
-				<?php  
-					//Obtener todos los posts
-					$args = array(
-						'order'          => 'ASC',
-						'orderby'        => 'menu_order',
-						'post_type'      => 'post',
-						'posts_per_page' => 6,
-					);
-
-					$ultimos_posts = get_posts( $args ); #var_dump($ultimos_posts);
-				?>
-				<div id="carousel-articles">
-					<ul>
-					<?php foreach( $ultimos_posts as $u_post ) : ?>
-						<li>
-						<article class="sectionPage__articles__item">
-							<!-- Imagen -->
-							<figure class="pull-xs-left">
-								<?php $image = get_the_post_thumbnail( $u_post->ID , array(210,96) ); echo $image; ?>
-							</figure><!-- /figure -->
-							<!-- Texto -->
-							<h3 class="sectionPage__articles__item__title">
-								<?php _e( $u_post->post_title , LANG ); ?></h3>
-							<!-- Extracto 30 palabras -->
-							<p class="sectionPage__articles__item__excerpt text-justify">
-								<?php _e( wp_trim_words( $u_post->post_content , 30 , '' ) , LANG ); ?>
-								<a href="<?= $u_post->guid ?>">Leer más <i class="fa fa-long-arrow-right" aria-hidden="true"></i> </a>
-							</p>
-						</article><!-- /.sectionPage__articles__item -->
-
-						<!-- Limpiar float --> <div class="clearfix"></div>
+						</article> <!-- /.item-blog -->
 					<?php endforeach; ?>
-						</li>
-					</ul>
-				</div><!-- /#bxslider-carousel-articles -->
-			</section><!-- /.sectionPage__articles -->
+				</section> <!-- /.pageInicio__blog-gallery -->
+				
+				<!-- GALERÍA DE CLIENTES -->
+				<!-- Titulo --> <h2 class="pageCommon__section-title"><?php _e('Clientes' , LANG ); ?></h2>
 
-			<!-- Seccion widget facebook - Ocultar en version mobile -->
-			<section class="sectionHomeFacebook col-xs-12 col-sm-4 text-xs-center">
-			
-				<!-- Titulo -->
-				<h2 class="PageCommon__subtitle text-uppercase text-xs-left"><?php _e('Facebook', LANG ); ?></h2>
+				<!-- Galería de Clientes -->
+				<div class="relative">
+					<!-- Wrapper -->
+					<section id="pageInicio__clients-gallery" class="pageInicio__clients-gallery js-carousel-gallery" data-items="3" data-margins="45" data-dots="false">
+						<?php  
+							/* Extraer los clientes: */
+							$args = array(
+								'order'          => 'ASC',
+								'orderby'        => 'menu_order',
+								'post_status'    => 'publish',
+								'post_type'      => 'cliente',
+								'posts_per_page' => -1,
+							);
+							$clientes = get_posts( $args );
+							foreach( $clientes as $cliente ) : if( has_post_thumbnail($cliente->ID) ) :
+							echo get_the_post_thumbnail($cliente->ID,'full',array('class'=>'img-fluid'));
+							endif; endforeach;
+						?>
+					</section> <!-- /.pageInicio__clients-gallery -->
 
+					<!-- Flechas de Carousel -->
+					<a href="#" class="js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="pageInicio__clients-gallery">
+						<i class="fa fa-chevron-left" aria-hidden="true"></i>
+					</a>					
+
+					<a href="#" class="js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="pageInicio__clients-gallery">
+						<i class="fa fa-chevron-right" aria-hidden="true"></i>
+					</a>
+					
+				</div> <!-- /.relative -->
+				<!--  -->
+			</div> <!-- /.col-xs-6 -->
+			<div class="col-xs-6">
+				<!-- Titulo --> <h2 class="pageCommon__section-title"><?php _e('Facebook' , LANG ); ?></h2>
+
+				<!-- Facebook -->
 				<?php $link_facebook = $options['red_social_fb']; 
 					if( !empty($link_facebook) ) :
 				?>
+					<section class="container__facebook">
+						<!-- Contebn -->
+						<div id="fb-root" class=""></div>
 
-					<div id="fb-root"></div> <!-- /fb root -->
+						<!-- Script -->
+						<script>(function(d, s, id) {
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id)) return;
+							js = d.createElement(s); js.id = id;
+							js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
+							fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
 
-					<!-- Script -->
-					<script>(function(d, s, id) {
-						var js, fjs = d.getElementsByTagName(s)[0];
-						if (d.getElementById(id)) return;
-						js = d.createElement(s); js.id = id;
-						js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
-						fjs.parentNode.insertBefore(js, fjs);
-					}(document, 'script', 'facebook-jssdk'));</script>
-
-					<div class="fb-page" data-href="<?= $link_facebook ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-height="375" data-hide-cover="false" data-show-facepile="true">
-						<div class="fb-xfbml-parse-ignore">
-							<blockquote cite="<?= $link_facebook ?>">
-								<a href="<?= $link_facebook ?>"><?php bloginfo('name'); ?></a>
-							</blockquote>
-						</div> <!-- /.fb-xfbml-parse-ignore -->
-					</div> <!-- /.fb-page -->
+						<div class="fb-page" data-href="<?= $link_facebook ?>" data-tabs="timeline" data-small-header="false" data-adapt-container-width="true" data-width="445" data-height="480" data-hide-cover="false" data-show-facepile="true">
+						</div> <!-- /. fb-page-->
+					</section> <!-- /.container__facebook -->
+				<?php else: ?>
+					<p class="text-xs-center">Opcion no habilitada temporalmente</p>
 				<?php endif; ?>
-			</section>  <!-- /.sectionHomeFacebook -->
-		
-		</div> <!-- /.row -->
-	</section> <!-- /.container -->
 
+			</div> <!-- /.col-xs-6 -->
+		</div> <!-- /.row -->
+	</div> <!-- /.container -->
 </section> <!-- /.pageInicio__miscelaneo -->

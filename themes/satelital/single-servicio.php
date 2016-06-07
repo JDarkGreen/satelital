@@ -3,12 +3,10 @@
 <!-- Global Post -->
 <?php 
 	global $post; 
-	$options = get_option('constructec_custom_settings'); 
+	$options = get_option('satelital_custom_settings'); 
 
-	//Conseguir el id de su pagina padre servicios
-	$parent_page  = get_page_by_title( 'Servicios' ); #var_dump($parent_page);
-	$banner       = $parent_page;
-	$banner_title = $post->post_title;
+	$banner       = $post;
+	$banner_title = "Servicios";
 ?>
 
 <!-- Get Header -->
@@ -19,121 +17,133 @@
 
 <!-- Contenido principal -->
 <section class="pageServicio">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-4">
-				<!-- aside de proyectos -->
-				<aside class="pageServicio__projects">
-					<!-- Titulo -->
-					<h2 class="sectionCommon__subtitle sectionCommon__subtitle--orange text-uppercase">
-						<strong><?php _e( 'servicio' , LANG ); ?></strong>
-					</h2>
-					<!-- Contenedor de proyectos y servicios -->
-					<?php  
-						//Argumentos y query
-						$args = array(
-							'order'          => 'ASC',
-							'orderby'        => 'menu_order',
-							'post_status'    => 'publish',
-							'post_type'      => 'servicio',
-							'posts_per_page' => -1,
-						);
-						$query = new WP_Query( $args );
 
-						//control 
-						$post_slug = $post->post_name;
-						if( $query->have_posts() ) :
-					?>
-					<ul class="pageServicio__projects__menu">
-						<?php while( $query->have_posts() ) : $query->the_post(); ?>
-							<!-- Conseguir el slug -->
-							<?php $current_slug = sanitize_title( get_the_title(), $fallback_title ); ?>
-							<li><a class="<?= $post_slug == $current_slug ? 'active' : '' ?> text-uppercase" href="<?php the_permalink(); ?>">
-								<strong> <?= get_the_title(); ?></strong>
-							</a></li>
-						<?php  endwhile; ?>
-					</ul> <!-- /.pageServicio__projects__menu -->
-					<?php endif; wp_reset_postdata(); ?>
-				</aside> <!-- /.pageServicio__projects -->
-			</div> <!-- /.col-xs-4 -->
-			<div class="col-xs-8">
-				<!-- Conseguir el servicio actual  -->
-				<article class="pageServicio__article">
-					<!-- Titulo -->
-					<h2 class="sectionCommon__subtitle text-uppercase">
-						<strong><?php _e( $post->post_title , LANG ); ?></strong>
-					</h2>
+	<!-- Sección Imágen del Banner -->
+	<section class="pageServicio__banner relative">
+		<?php $img_banner = get_post_meta($banner->ID, 'input_img_banner_'.$banner->ID , true);
+			if( !empty($img_banner) && $img_banner !== -1 ) :  
+		?>
+		<img src="<?= $img_banner; ?>" alt="image-servicio-<?= $post->post_name; ?>" class="img-fluid" />
+		<?php endif; ?>
 
+		<!-- Contenido texto de Banner -->
+		<div class="pageServicio__banner__content">
+			<h2 class=""><?php _e( $post->post_title , LANG ); ?></h2>
+			<!-- Slogan -->
+			<p>
+				<?php 
+					$slogan = get_post_meta( $post->ID, 'mb_box_info_extra' , true );
+					if( !empty($slogan) ) :
+						$slogan  = explode( " " , $slogan ); #var_dump($slogan);
+						echo implode( " ", array_slice( $slogan , 0 , -1 ) );
+				?>
+				<span><strong><?= implode( " " , array_slice( $slogan , -1 , 1 ) ); ?></strong></span>
+				<?php endif; ?>
+			</p>
+		</div> <!-- /. pageServicio__banner__content -->
+
+	</section> <!-- /.pageServicio__banner -->
+
+	<!-- Linea Separadora --> <div id="separator-line" class="relative"></div>
+
+	<!-- Sección Información del Servicio -->
+	<section class="pageServicio__info">
+		<div class="container">
+			<div class="row">
+
+				<!-- Seccion de Información -->
+				<div class="col-xs-8">
+					<!-- Titulo de la sección -->
+					<h2 class="pageServicio__title-section text-uppercase"><?php _e( $post->post_title , LANG ); ?></h2>
 					<!-- Contenido -->
-					<div class="pageServicio__article__text">
-						<?= apply_filters('the_content', $post->post_content ); ?>
-					</div> <!-- /.pageServicio__article__text -->
+					<div class="text-justify">
+						<?= !empty($post->post_content ) ? apply_filters('the_content', $post->post_content ) : "Actualizando Contenido..."; ?>
+					</div> <!-- /.text-justify -->
 
-					<section class="relative">
+					<!-- Galería de Imágenes -->
+					<section class="pageService__gallery">
+						<!-- Seccion con posicion relativa  -->
+						<div class="relative">
+								
+							<!-- Wrapper contenedor de items -->
+							<div id="carousel-servicios-gallery" class="js-carousel-gallery" data-items="3" data-margins="8" data-dots="true">
 
-						<!-- Imagenes Galeria -->
-						<section id="carousel-gallery-service" class="js-carousel-gallery-service pageServicio__gallery">
+								<?php /* Obtener todos los ids de la Galería */ 
+									$input_ids_img  = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
+										//convertir en arreglo
+										$input_ids_img  = explode(',', $input_ids_img );
+
+										//Hacer loop por cada item de arreglo
+										foreach ( $input_ids_img as $item_img ) : 
+											//Si es diferente de null o tiene elementos
+											if( !empty($item_img) ) : 
+											//Conseguir todos los datos de este item
+											$item = get_post( $item_img  ); 
+
+											//Conseguir la Imágen destacada
+											$url_img = $item->guid;
+										?> <!-- Artículo o Ítem -->
+										<article class="item-gallery-service">
+											<!-- Imagen Fancybox -->
+											<a href="<?= $url_img; ?>" class="js-gallery-item" rel="group">
+												<img src="<?= $url_img; ?>" alt="<?= $item->post_name; ?>" class="img-fluid" />
+											</a>
+										</article> <!-- /.item-gallery-service -->
+										<?php endif; endforeach; 
+								?>
+
+							</div> <!-- /.js-carousel-gallery -->
+
+							<!-- Flechas -->
+							<a href="#" class="js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="carousel-servicios-gallery">
+								<i class="fa fa-chevron-left" aria-hidden="true"></i>
+							</a> <!-- /-arrowCommon__slider arrowCommon__slider--prev -->
+
+							<a href="#" class="js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="carousel-servicios-gallery">
+								<i class="fa fa-chevron-right" aria-hidden="true"></i>
+							</a> <!-- /-arrowCommon__slider arrowCommon__slider--next -->
+
+						</div> <!-- /.relative -->
+
+					</section> <!-- /.pageInicio__gallery -->
+
+				</div> <!-- /.col-xs-8 -->
+
+				<!-- Seccion de Categorías -->
+				<div class="col-xs-4">
+					<!-- Incluir archivo template de Servicios -->
+					<aside class="pageServicio__services text-uppercase">
+						<!-- Titulo --> <h3 class=""><?php _e('servicios', LANG ); ?></h3>
+						<!-- Lista de Servicios -->
+						<ul>
 							<?php  
-								//Obtener imagenes de la galería
-								$input_ids_img  = get_post_meta( $post->ID, 'imageurls_'.$post->ID , true);
-								//convertir en arreglo
-								$input_ids_img  = explode(',', $input_ids_img );
-								//eliminar valores duplicados - sigue siendo array
-								$input_ids_img  = array_unique( $input_ids_img );
-								//colocar en una sola cadena para el input
-								$string_ids_img = "";
-								$string_ids_img = implode(',', $input_ids_img);
-
-								$args  = array(
-									'post_type'      => 'attachment',
-									'post__in'       => $input_ids_img,
+								$args = array(
+									'order'          => 'ASC',
+									'orderby'        => 'menu_order',
+									'post_status'    => 'publish',
+									'post_type'      => 'servicio',
 									'posts_per_page' => -1,
 								);
-								$attachment = get_posts($args);
-								
-								if( !empty($attachment) ) :
-								foreach( $attachment as $atta ) :
-
-								/* Datos de la imgen */
-								$contenido = $atta->post_content;					
+								$servicios = get_posts( $args ); 
+								foreach ( $servicios as $servicio ) : 
 							?>
-								<div class="item">
-									<img src="<?= $atta->guid; ?>" alt="<?= $atta->post_title; ?>" class="img-fluid" />
-									
-									<?php if( !empty($contenido) ) : ?>
-										<p class="item__content text-uppercase"><?= $contenido; ?></p>
-									<?php else: ?>
-										<p class="item__content text-uppercase"><?= $post->post_title; ?></p>
-									<?php endif; ?>
+							<li><a class="<?= $post->ID == $servicio->ID ? 'active' : '' ?>" href="<?= $servicio->guid; ?>"><?= $servicio->post_title; ?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					</aside> <!-- /.pageServicio__services -->
+				</div> <!-- /.col-xs-4 -->
 
-								</div><!-- /.item -->
-							<?php endforeach; else: ?>
-								<p><?php _e( 'No imágenes para mostrar' , LANG ); ?></p>
-							<?php endif;  ?>
-						</section> <!-- ./pageEmpresa__gallery -->
+			</div> <!-- /.row -->
+		</div> <!-- /.container -->
+	</section> <!-- /.pageServicio__info -->
 
-						<!-- Flechas del Carousel -->
-						<a id="arrow-carousel-page-service--left" href="#" class="arrow-carousel-common arrow-carousel-page-service arrow-carousel-page-service--left">
-							<i class="fa fa-chevron-left" aria-hidden="true"></i>
-						</a><!-- /.arrow-carousel-page-service--left -->
-						<a id="arrow-carousel-page-service--right" href="#" class="arrow-carousel-common arrow-carousel-page-service arrow-carousel-page-service--right">
-							<i class="fa fa-chevron-right" aria-hidden="true"></i>
-						</a><!-- /.arrow-carousel-page-service--right -->
-
-					</section> <!-- /.relative -->
-
-				</article> <!-- /.pageServicio__article -->
-			</div> <!-- /.col-xs-8 -->
-		</div> <!-- /.row -->
-	</div> <!-- /.container -->
 </section> <!-- /.pageServicio -->
 
+<!-- Incluir Banner de Soluciones -->
+<?php include( locate_template('partials/banner-services.php') ); ?>
 
-<!-- Incluir Banner de Servicios -->
-<?php include(locate_template('partials/banner-services.php')); ?>
-
-<!-- Incluir template de carousel clientes -->
-<?php include( locate_template("partials/carousel-clientes.php") ); ?>
+<!-- Incluir Sección Miscelaneo -->
+<?php include( locate_template('partials/miscelaneo.php') ); ?>
 
 <!-- Get Footer -->
 <?php get_footer(); ?>

@@ -40,25 +40,25 @@ function satelital_customize_register($wp_customize) {
 		'priority' => 41
 	));	
 	/* MISION */
-	$wp_customize->add_setting('satelital_custom_settings[text_mision]', array(
+	$wp_customize->add_setting('satelital_custom_settings[text_mision_vision]', array(
 		'default' => '',
 		'type' => 'option'
 	));
-	$wp_customize->add_control('satelital_custom_settings[text_mision]', array(
-		'label'    => __('Escribe el texto MISIÓN', LANG ),
+	$wp_customize->add_control('satelital_custom_settings[text_mision_vision]', array(
+		'label'    => __('Escribe el texto MISIÓN y VISIÓN', LANG ),
 		'section'  => 'satelital_mision_vision',
-		'settings' => 'satelital_custom_settings[text_mision]',
+		'settings' => 'satelital_custom_settings[text_mision_vision]',
 		'type'     => 'textarea'
 	));	
-	/* VISION */
-	$wp_customize->add_setting('satelital_custom_settings[text_vision]', array(
+	####>>>>>>>>>>>> VALORES >>>>>>>>>>>>>>>>>>
+	$wp_customize->add_setting('satelital_custom_settings[text_valores]', array(
 		'default' => '',
 		'type' => 'option'
 	));
-	$wp_customize->add_control('satelital_custom_settings[text_vision]', array(
-		'label'    => __('Escribe el texto VISIÓN', LANG ),
+	$wp_customize->add_control('satelital_custom_settings[text_valores]', array(
+		'label'    => __('Escribe el texto VALORES', LANG ),
 		'section'  => 'satelital_mision_vision',
-		'settings' => 'satelital_custom_settings[text_vision]',
+		'settings' => 'satelital_custom_settings[text_valores]',
 		'type'     => 'textarea'
 	));
 

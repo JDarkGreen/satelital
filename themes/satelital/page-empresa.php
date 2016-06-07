@@ -3,102 +3,76 @@
 <!-- Global Post -->
 <?php 
 	global $post; 
-	$options = get_option('constructec_custom_settings'); 
+	$options = get_option('satelital_custom_settings'); 
 ?>
 
 <!-- Get Header -->
 <?php get_header(); ?>
 
 <!-- Incluir banner de la página -->
-<?php  
-	$banner = $post;
-	include( locate_template("partials/banner-common-pages.php") );
-?>
+<?php $banner = $post; include( locate_template("partials/banner-common-pages.php") ); ?>
 
-<!-- SECCION DE INFORMACION DE LA EMPRESA -->
-<section class="pageEmpresa pageEmpresa__content">
+<!-- Wrapper de Página  -->
+<section class="pageNosotros">
 	<div class="container">
 		<div class="row">
+			<div class="col-xs-8">
+			
+				<!-- Título de Sección  --> <h2 class="pageCommon__section-title"><?php _e('Nosotros', LANG ); ?></h2>
 
-			<div class="col-xs-12 col-sm-6 text-justify">
-				<!-- Titulo -->
-				<h2 class="sectionCommon__subtitle pageEmpresa__subtitle text-uppercase">
-					<strong><?php _e( 'Constructec' , LANG ); ?></strong>
-				</h2>
+				<!-- Contenido --> <div class="pageNosotros__content text-justify"> 
+				<?= !empty($post->post_content) ? apply_filters('the_content', $post->post_content) : "Actualizando Contenido ..."; ?>
+				</div>
 
-				<!-- Contenido -->
-				<?php $empresa_text = $post->post_content;  if( !empty($empresa_text)) : ?>
-					<?= apply_filters('the_content', $empresa_text ); ?>
-				<?php endif; ?>
-			</div> <!-- /.col-xs-12 col-sm-6 -->
-
-			<div class="col-xs-12 col-sm-6">
-				<!-- Imagenes Galeria -->
-				<section id="carousel-gallery-empresa" class="pageEmpresa__gallery">
-					<?php  
-						//Obtener imagenes de la galería
-						$input_ids_img = -1;
-						$input_ids_img = get_post_meta($post->ID, 'imageurls_'.$post->ID , true);
-						$array_images  = explode(',', $input_ids_img );
+				<!-- Sección de Aptitudes . [ Mision Vision Valores ] -->
+				<section id="accordion_aptitudes" role="tablist" aria-multiselectable="true" class="pageNostros__tabs">
+					
+					<!-- Sección Misión Y Vision -->
+  				<div class="panel panel-default">
+    				<div class="panel-heading" role="tab" id="headingOne">
+      				<h4 class="panel-title relative">
+        				<a data-toggle="collapse" data-parent="#accordion_aptitudes" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> <?php _e( 'Misión y Visión' , LANG ); ?>
+        				</a>
+        				<!-- Icon --> <i class="fa fa-caret-down" aria-hidden="true"></i>
+      				</h4> <!-- /.panel-title -->
+    				</div> <!-- /.panel-heading -->
 						
-						$args  = array(
-						'post_type'      => 'attachment',
-						'post__in'       => $array_images,
-						'posts_per_page' => -1,
-						);
-						$attachment = get_posts($args);		
+						<!-- Contenido Mision y Visión -->
+    				<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+    					<?= !empty($options['text_mision_vision']) ? apply_filters('the_content' , $options['text_mision_vision'] ) : "Actualizando Contenido..."; ?>
+    				</div> <!-- /.panel-collapse collapse in -->
+  				</div> <!-- /.panel panel-default -->
+  				
+  				<!-- Sección Valores -->
+  				<div class="panel panel-default">
+    				<div class="panel-heading" role="tab" id="headingTwo">
+      				<h4 class="panel-title relative">
+        				<a class="collapsed" data-toggle="collapse" data-parent="#accordion_aptitudes" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> <?php _e( 'Valores' , LANG ); ?>
+        				</a>
+        				<!-- Icon --> <i class="fa fa-caret-down" aria-hidden="true"></i>
+      				</h4> <!-- /.panel-title -->
+    				</div> <!-- /.panel-heading -->
 						
-						foreach( $attachment as $atta ) :				
-					?>
-						<div class="item">
-							<img src="<?= $atta->guid; ?>" alt="<?= $atta->post_title; ?>" class="" />
-						</div><!-- /.item -->
-					<?php endforeach; ?>
-				</section> <!-- ./pageEmpresa__gallery -->
-			</div> <!-- /.col-xs-12 col-sm-6 -->
+						<!-- Contenido Valores -->
+    				<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+    					<?= !empty($options['text_valores']) ? apply_filters( 'the_content' , $options['text_valores'] ) : "Actualizando Contenido..."; ?>
+    				</div> <!-- /.panel-collapse collapse -->
+  				</div> <!-- /.panel panel-default -->
+
+  			</section> <!-- /.accordion_aptitudes -->
+			
+			</div> <!-- /.col-Xs-8 -->
 		</div> <!-- /.row -->
-	</div> <!-- /.container -->
-</section> <!-- /.pageEmpresa pageEmpresa__content -->
+	</div> 	<!-- /.container -->
+</section> <!-- /.pageNosotros -->
 
-<!-- SECCION MISION Y VISION DE LA EMPRESA -->
-<section class="pageEmpresa pageEmpresa__mision">
-	<div class="container">
-		<div class="row">
-			<!-- Contenido y fondo -->
-			<section class="pageEmpresa__mision__content">
-				<!-- MISION -->
-				<div class="col-xs-12 col-sm-6">
-					<!-- Titulo -->
-					<h2 class="pageEmpresa__title text-uppercase"><?php _e('misión', LANG ); ?></h2>
-					<?php $mision = $options['text_mision']; if( !empty($mision) ) : ?>
-						<article class="article-box-information">
-							<?= apply_filters('the_content' , $mision ); ?>
-						</article> <!-- /.article-box-information -->
-					<?php endif; ?>
-				</div> <!-- /.col-xs-6 -->
+<!-- Incluir Banner de Soluciones -->
+<?php include( locate_template('partials/banner-services.php') ); ?>
 
-				<!-- VISION -->
-				<div class="col-xs-12 col-sm-6">
-					<!-- Titulo -->
-					<h2 class="pageEmpresa__title text-uppercase"><?php _e('visión', LANG ); ?></h2>
-					<?php $vision = $options['text_vision']; if( !empty($vision) ) : ?>
-						<article class="article-box-information">
-							<?= apply_filters('the_content' , $vision ); ?>
-						</article> <!-- /.article-box-information -->
-					<?php endif; ?>
-				</div> <!-- /.col-xs-6 -->
+<!-- Incluir Sección Miscelaneo -->
+<?php include( locate_template('partials/miscelaneo.php') ); ?>
 
-				<div class="clearfix"></div>
-			</section> <!-- /.pageEmpresa__mision__content -->
-		</div> <!-- /.row -->
-	</div><!-- /.container -->
-</section> <!-- /.pageEmpresa pageEmpresa__mision -->
 
-<!-- Incluir Banner de Servicios -->
-<?php include(locate_template('partials/banner-services.php')); ?>
-
-<!-- Incluir template de carousel clientes -->
-<?php include( locate_template("partials/carousel-clientes.php") ); ?>
 
 <!-- Get Footer -->
 <?php get_footer(); ?>

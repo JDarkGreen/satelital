@@ -9,14 +9,15 @@
 			<?php $img_banner = get_post_meta($banner->ID, 'input_img_banner_'.$banner->ID , true); 
 				if( !empty($img_banner) && $img_banner != -1 ) :
 			?>
-				<img src="<?= $img_banner ?>" alt="banner-nosotros-empresa-pbg" class="img-fluid" />
+				<!--img src="<?= $img_banner ?>" alt="banner-nosotros-empresa-pbg" class="img-fluid" /-->
+				<img src="<?= IMAGES ?>/pages/banner_default.jpg" alt="banner-nosotros-issatelital" class="img-fluid" />
 			<?php else: ?>
-				<img src="<?= IMAGES ?>/pages/banner_default.jpg" alt="banner-nosotros-empresa-pbg" class="img-fluid" />
+				<img src="<?= IMAGES ?>/pages/banner_default.jpg" alt="banner-nosotros-issatelital" class="img-fluid" />
 			<?php endif; ?>
 		</figure>
 
 		<!-- Título de la pagina posicion absoluta -->
-		<h2 class="pageCommon__banner__title text-uppercase">
+		<h2 class="pageCommon__banner__title text-uppercase container-flex align-content">
 			<strong> 
 				<?php
 					if( isset($banner_title) && !empty($banner_title) ){
