@@ -37,6 +37,11 @@ body,html
 figure 
 	margin: 0
 
+//Sobreescribir clase owl carousel para imagenes
+.owl-item
+	+transform( translateZ(0) scale(1.0, 1.0) !important )
+	-webkit-backface-visibility: hidden !important
+
 /***************************************************************************************/
 /**-------------------------- KEYFRAMES  ---------------------------------------------**/
 /***************************************************************************************/
@@ -129,14 +134,16 @@ figure
 .arrowCommon__slider
 	color          : $satelital_red
 	font-size      : 32px 
-	margin         : -16px auto 0
+	margin         : -24px auto 0
+	outline        : none 
 	position       : absolute
 	text-decoration: none 
 	top            : 50%
 	width          : 15px 
 	z-index        : 999 
 	&:hover , &:focus 
-		color: $satelital_red
+		color          : $satelital_red
+		text-decoration: none
 	&:hover 
 		animation: pulse 600ms ease-in infinite
 
@@ -182,6 +189,28 @@ figure
 	//Imagen
 	figure 
 		margin: -30px 0 0 
+
+//SECCIONES 
+
+//++ Seccion Promociones
+.pageCommon__promotions
+	margin: 40px auto
+	//Articulo item 
+	.item-promocion 
+		background: black 
+	//Sobreescribir Flechas de carousel
+	.arrowCommon__slider--prev
+		left: 10%
+	.arrowCommon__slider--next
+		right: 10%
+
+//++ Sección Clientes
+.pageCommon__clientes
+	margin: 70px auto
+	//Galería
+	.pageInicio__clients-gallery
+		padding: 0 30px
+
 
 /***************************************************************************************/
 /**- HEADER   -------------------------------------------**/
@@ -244,25 +273,28 @@ figure
 
 			//Submenu
 			.sub-menu 
-				background: white
-				border    : 1px solid
-				left      : -60px
+				background: black
+				left      : 10px
 				padding   : 5px
 				position  : absolute
-				right     : -60px
 				top       : 100px
 				visibility: hidden
+				width     : 290px
 				z-index   : 999
 				+opacity( 0 )
-				+transition( all 400ms ease-in )
+				+transition( all 500ms ease-in-out )
 				//elemento de la lista
 				li 
+					display: block
 					a 
-						+box-shadow( inset 0 0 0 0 black )
+						+border-radius( 0 )
+						+box-shadow(inset 0 0 0 0 transparent !important )
 					//Hover
 					&.current-menu-item,&.current_page_item,&:hover
 						a
-							+box-shadow(inset 250px 0 0 0 $satelital_red )
+							background: white
+							color     : black 
+
 
 /***************************************************************************************/
 /**- PAGINA DE INICIO PORTADA ---------------------------**/
@@ -636,6 +668,126 @@ figure
 					background   : $satelital_red
 					border-bottom: 1px solid transparent
 					color        : white  
+
+/***************************************************************************************/
+/**- PÁGINA TARIFARIO  -------------------------------------------**/
+/***************************************************************************************/
+
+//Sección de la Página
+.pageTarifario
+	background     : url("../images/pages/tarifario/TARIFARIO_choferes_remplazo_peru_lima_fondo.jpg") no-repeat
+	background-size: 100%
+	padding        : 72px 0
+//Contenido de la Página
+.pageTarifario__content
+	//Titulos
+	h1,h2,h3,h4
+		clear      : both 
+		color      : $satelital_red
+		font-size  : 25px
+		font-weight: 600
+		margin     : 0 auto 18px
+	//Parrafos
+	p 
+		margin: 0 auto
+	//Link
+	a 
+		+border-radius( 6px )		
+		+transition( all 500ms ease-in )
+		background     : $satelital_red
+		border         : 0
+		color          : white 
+		display        : inline-block
+		font-size      : 15px
+		line-height    : 1em
+		margin         : 10px auto 
+		padding        : 10px 18px
+		text-decoration: none
+		//Hover
+		&:hover 
+			+scale( 1.1 ) 
+
+/***************************************************************************************/
+/**- PÁGINA BLOG  -------------------------------------------**/
+/***************************************************************************************/
+
+//Seccion del Blog
+.pageBlog
+	background     : url("../images/pages/blog/blog_choferes_remplazo_peru_lima_fondo.jpg") no-repeat
+	background-size: 100%
+	padding        : 55px 0 70px
+
+//Artículos Preview
+.pageBlog__content__article
+	margin: 0 auto 33px
+	//Imagen
+	figure 
+		margin  : 0 auto 8px
+		overflow: hidden
+		img
+			+transform( translateZ(0) scale(1.0) )
+			+transition( all 500ms ease )
+			-webkit-backface-visibility: hidden
+	//Titulo
+	.article-title 
+		font-size  : 20px
+		line-height: 1em 
+	//Contenido
+	.pageBlog__content__article__text
+		font-size: 15px
+	//Link al post
+	.btn__show-more-post
+		color          : $satelital_red
+		text-decoration: none 
+
+	//Hover articulo
+	&:hover 
+		img 
+			+scale( 1.2 )
+
+//ASIDE [ DE CATEGORIAS DE POST ]
+.pageArticle__sidebar__categories
+	//Titulo
+	h2 
+		border-bottom: 1px solid gray
+		color        : $satelital_red
+		font-size    : 20px 
+		padding      : 0 0 5px 
+	//Menú de Categorías
+	.menu-categories
+		list-style-type: none
+		margin         : 0
+		padding        : 0
+		li 
+			a 
+				+border-radius ( 0px )
+				+transition( all 400ms ease-in-out )
+				border-bottom  : 1px solid gray
+				color          : gray
+				display        : block
+				line-height    : 1em
+				margin         : 0 auto 2px
+				padding        : 10px
+				text-decoration: none
+				//Hover u Active
+				&:hover , &.active
+					+border-radius( 6px )
+					background   : $satelital_red
+					border-bottom: 1px solid transparent
+					color        : white 
+
+//SINGLE [ Desarrollo de cada post ]
+//++Imagen
+.pageArticle__image
+	margin  : 0 auto 25px 
+	overflow: hidden
+	img
+		+transition( all 500ms ease )
+	//Hover Imagen
+	&:hover
+		img 
+			+scale( 1.2 )
+
 
 
 

@@ -69,10 +69,13 @@
 <!-- Incluir Banner de Soluciones -->
 <?php include( locate_template('partials/banner-services.php') ); ?>
 
-<!-- Incluir Sección Miscelaneo -->
-<?php include( locate_template('partials/miscelaneo.php') ); ?>
-
-
+<!-- Incluir Banner de Portada -->
+<?php  
+  $term = "Portada";
+  //template
+  include(locate_template('partials/portada/content-banner.php'));
+?>
+<!-- Linea separadora --> <div id="separator-line" class="relative"></div>
 
 <!-- Get Footer -->
 <?php get_footer(); ?>

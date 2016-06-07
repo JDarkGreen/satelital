@@ -147,6 +147,30 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-video-alt2',
 	);
 
+	/*|>>>>>>>>>>>>>>>>>>>> PROMOCIONES  <<<<<<<<<<<<<<<<<<<<|*/
+	
+	$labels7 = array(
+		'name'               => __('Promociones'),
+		'singular_name'      => __('Promoción'),
+		'add_new'            => __('Nueva Promoción'),
+		'add_new_item'       => __('Agregar nueva Promoción'),
+		'edit_item'          => __('Editar Promoción'),
+		'view_item'          => __('Ver Promoción'),
+		'search_items'       => __('Buscar Promoción'),
+		'not_found'          => __('Promoción no encontrada'),
+		'not_found_in_trash' => __('Promoción no encontrada en la papelera'),
+	);
+
+	$args7 = array(
+		'labels'      => $labels7,
+		'has_archive' => true,
+		'public'      => true,
+		'hierachical' => false,
+		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes'),
+		'taxonomies'  => array('category','post-tag'),
+		'menu_icon'   => 'dashicons-products',
+	);
+
 
 	/*|>>>>>>>>>>>>>>>>>>>> REGISTRAR  <<<<<<<<<<<<<<<<<<<<|*/
 	register_post_type( 'banner'   , $args  );
@@ -155,6 +179,7 @@ function create_post_type(){
 	register_post_type( 'cliente' , $args4 );
 	register_post_type( 'galeria-images' , $args5 );
 	register_post_type( 'galeria-videos' , $args6 );
+	register_post_type( 'promocion' , $args7 );
 	
 	flush_rewrite_rules();
 }

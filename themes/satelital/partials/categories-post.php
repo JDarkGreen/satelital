@@ -1,13 +1,16 @@
 
 <!-- Tener las categorias -->
 <section class="pageArticle__sidebar__categories">
+
 	<!-- Titulo -->
-	<h2 class="sectionCommon__subtitle text-uppercase">
-	<strong><?php _e( 'categorías' , LANG ); ?></strong>
-	</h2> <!-- /.sectionCommon__subtitle -->
+	<h2 class="sectionCommon__subtitle"> <?php _e( 'Categorías' , LANG ); ?> </h2> 
+	<!-- /.sectionCommon__subtitle -->
+
 	<!-- Lista Categorias-->
 	<?php $categories = get_categories(); #var_dump($categories);
+
 	if( !empty($categories) ) : ?>
+
 	<ul class="menu-categories">		
 	<?php foreach( $categories as $cat ) : ?>
 		<li>

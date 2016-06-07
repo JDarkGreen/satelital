@@ -27,7 +27,7 @@
 		<?php endif; ?>
 
 		<!-- Contenido texto de Banner -->
-		<div class="pageServicio__banner__content">
+		<?php /*<div class="pageServicio__banner__content">
 			<h2 class=""><?php _e( $post->post_title , LANG ); ?></h2>
 			<!-- Slogan -->
 			<p>
@@ -40,7 +40,7 @@
 				<span><strong><?= implode( " " , array_slice( $slogan , -1 , 1 ) ); ?></strong></span>
 				<?php endif; ?>
 			</p>
-		</div> <!-- /. pageServicio__banner__content -->
+		</div> <!-- /. pageServicio__banner__content --> */ ?>
 
 	</section> <!-- /.pageServicio__banner -->
 
@@ -142,8 +142,9 @@
 <!-- Incluir Banner de Soluciones -->
 <?php include( locate_template('partials/banner-services.php') ); ?>
 
-<!-- Incluir Sección Miscelaneo -->
-<?php include( locate_template('partials/miscelaneo.php') ); ?>
+<!-- Incluir Carousel de Promociones -->
+<?php include( locate_template('partials/carousel-promociones.php') ); ?>
+
 
 <!-- Get Footer -->
 <?php get_footer(); ?>
