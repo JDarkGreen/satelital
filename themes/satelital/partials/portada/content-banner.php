@@ -47,12 +47,12 @@
 		<?php $i++; endwhile; ?> 
   </div> <!-- /carousel-inner -->
 	
-	<!-- FLECHAS DEL CAROUSEL -->
-  <a class="arrowCarouselHome arrowCarouselHome--left" href="#carousel-home" role="button" data-slide="prev">
+	<!-- FLECHAS DEL CAROUSEL OCULTAR EN MOBILE -->
+  <a class="hidden-xs-down arrowCarouselHome arrowCarouselHome--left" href="#carousel-home" role="button" data-slide="prev">
    <i class="fa fa-chevron-left" aria-hidden="true"></i>
   </a>
 
-  <a class="arrowCarouselHome arrowCarouselHome--right" href="#carousel-home" role="button" data-slide="next">
+  <a class="hidden-xs-down arrowCarouselHome arrowCarouselHome--right" href="#carousel-home" role="button" data-slide="next">
     <i class="fa fa-chevron-right" aria-hidden="true"></i>
   </a>
 

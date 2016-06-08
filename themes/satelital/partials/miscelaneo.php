@@ -2,10 +2,11 @@
 <section class="pageInicio__miscelaneo">
 	<div class="container">
 		<div class="row text-xs-center">
-			<div class="col-xs-6">
+
+			<div class="col-xs-12 col-md-6">
 				<!-- Titulo --> <h2 class="pageCommon__section-title"><?php _e('Blog' , LANG ); ?></h2>
 				<!-- Galería de blog -->
-				<section id="pageInicio__blog-gallery" class="pageInicio__blog-gallery js-carousel-gallery" data-items="2" data-margins="61" data-dots="true">
+				<section id="pageInicio__blog-gallery" class="pageInicio__blog-gallery js-carousel-gallery" data-items="2" data-items-responsive="1" data-margins="61" data-dots="true">
 					<?php  
 						/* Extraer los 8 ultimos posts */
 						$args = array(
@@ -41,7 +42,7 @@
 				<!-- Galería de Clientes -->
 				<div class="relative">
 					<!-- Wrapper -->
-					<section id="pageInicio__clients-gallery" class="pageInicio__clients-gallery js-carousel-gallery" data-items="3" data-margins="45" data-dots="false">
+					<section id="pageInicio__clients-gallery" class="pageInicio__clients-gallery js-carousel-gallery" data-items="3" data-items-responsive="2" data-margins="45" data-dots="false">
 						<?php  
 							/* Extraer los clientes: */
 							$args = array(
@@ -58,19 +59,20 @@
 						?>
 					</section> <!-- /.pageInicio__clients-gallery -->
 
-					<!-- Flechas de Carousel -->
-					<a href="#" class="js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="pageInicio__clients-gallery">
+					<!-- Flechas de Carousel Ocultar Mobile -->
+					<a href="#" class="hidden-xs-down js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="pageInicio__clients-gallery">
 						<i class="fa fa-chevron-left" aria-hidden="true"></i>
 					</a>					
 
-					<a href="#" class="js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="pageInicio__clients-gallery">
+					<a href="#" class="hidden-xs-down js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="pageInicio__clients-gallery">
 						<i class="fa fa-chevron-right" aria-hidden="true"></i>
 					</a>
 					
 				</div> <!-- /.relative -->
 				<!--  -->
 			</div> <!-- /.col-xs-6 -->
-			<div class="col-xs-6">
+
+			<div class="col-xs-12 col-md-6">
 				<!-- Titulo --> <h2 class="pageCommon__section-title"><?php _e('Facebook' , LANG ); ?></h2>
 
 				<!-- Facebook -->
@@ -98,6 +100,7 @@
 				<?php endif; ?>
 
 			</div> <!-- /.col-xs-6 -->
+
 		</div> <!-- /.row -->
 	</div> <!-- /.container -->
 </section> <!-- /.pageInicio__miscelaneo -->

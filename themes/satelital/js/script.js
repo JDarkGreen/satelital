@@ -6,6 +6,29 @@ var j = jQuery.noConflict();
 	j(document).on('ready',function(){
 
 		/*|----------------------------------------------------------------------|*/
+		/*|-----  SLIDEBAR VERSION MOBILE  -----|*/
+		/*|----------------------------------------------------------------------|*/
+
+		var mySlidebars = new j.slidebars({
+			disableOver       : 568, // integer or false
+			hideControlClasses: true, // true or false
+			scrollLock        : false, // true or false
+			siteClose         : true, // true or false
+		});
+
+		//Eventos
+
+		//Abrir contenedor izquierda
+		j("#toggle-left-nav").on('click',function(){
+			mySlidebars.slidebars.toggle('left');
+		});
+
+		//Abrir contenedor derecha
+		j("#toggle-right-nav").on('click',function(){
+			mySlidebars.slidebars.toggle('right');
+		});
+
+		/*|----------------------------------------------------------------------|*/
 		/*|-----  CAROUSEL HOME -----|*/
 		/*|----------------------------------------------------------------------|*/
 		var carousel_home = j("#carousel-home").carousel({
@@ -94,6 +117,8 @@ var j = jQuery.noConflict();
 
 				/* Valor de Items */
 				var items  = current.attr('data-items') != "" ? current.attr('data-items') : 3;
+				/* Valor de Items Responsive */
+				var items_responsive  = current.attr('data-items-responsive') != "" ? current.attr('data-items-responsive') : items;
 				/* Valor de Márgenes */
 				var margins = current.attr('data-margins') != "" ? current.attr('data-margins') : 10;				
 				/* Habilitar dots */
@@ -113,9 +138,16 @@ var j = jQuery.noConflict();
 					fluidSpeed     : 2000,
 					smartSpeed     : 2000,
 					dots           : Boolean( dot ),
+					responsive:{
+				        320:{
+				            items: items_responsive
+				        },
+				      	640:{
+				            items: items
+				        },
+			    	}
 				});
 			
-
 			/* end each */
 			});
 		/* end conditional */
@@ -179,6 +211,30 @@ var j = jQuery.noConflict();
 		/*|-----  VALIDADOR FORMULARIO.  ------|*/
 		/*|--------------------------------------------------------------|*/
 		j('#form-contacto').parsley();
+
+		j(document).on('submit', j('#form-contacto') , function(e){
+			e.preventDefault();
+			//Subir el formulario mediante ajax
+			j.post( url + '/email/enviar.php', 
+			{ 
+				email   : j("#input_email").val(),
+				message : j("#text_mensaje").val(),
+				nombre  : j("#input_nombre").val(),
+				servicio: j("#input_servicio").val(),
+				tel     : j("#input_tel").val(),
+			},function(data){
+				alert( data );
+				j("#input_email").val(""),
+				j("#text_mensaje").val("");
+				j("#input_nombre").val("");
+				j("#input_servicio").val("");
+				j("#input_tel").val("");
+
+				//recargar navegador
+				location.reload(); 
+
+			});			
+		});
 
 	});
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */

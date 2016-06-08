@@ -22,8 +22,11 @@
 /**-------------------------- VARIABLES ---------------------------------------------**/
 /***************************************************************************************/
 
-$satelital_red : #FF141F
-$satelital_gray: #C7C7C7
+$satelital_red            : #FF141F
+$satelital_yellow         : #FFFEA8
+
+$satelital_gray           : #C7C7C7
+$satelital_gray_semioscuro: #C8C9CB
 
 
 /***************************************************************************************/
@@ -105,6 +108,26 @@ figure
 	font-size  : 25px 
 	font-weight: 600
 	margin     : 0 auto 18px 
+
+//++ Texto Web
+.text-web
+	color          : white
+	display        : inline-block
+	span 
+		font-size  : 20px
+		font-weight: 600
+	&:hover , &:focus 
+		text-decoration: none
+	&:hover
+		animation: expand 950ms ease infinite
+		color    : white
+//++ Variación color rojo
+.text-web--red
+	color: $satelital_red
+	&:hover
+		color: $satelital_red
+
+
 
 //+Botones
 //++Boton Rojo Comun Ver - leer mas 
@@ -192,6 +215,21 @@ figure
 
 //SECCIONES 
 
+//++Sección Llamadas
+.sectionCommon__call
+	font-family: "Francois"
+	//Titulo
+	h2
+		color    : $satelital_red
+		font-size: 35px
+		margin   : 0 
+	//Parrafos
+	p 
+		color      : black
+		font-size  : 27px 
+		line-height: 1.2em 
+		margin     : 0 
+
 //++ Seccion Promociones
 .pageCommon__promotions
 	margin: 40px auto
@@ -228,6 +266,11 @@ figure
 	span 
 		color    : $satelital_red
 		font-size: 25px 
+	//Imagen Icono
+	img 
+		display       : inline-block
+		max-width     : 26px
+		vertical-align: sub
 
 /***************************************************************************************/
 /**- NAVIGATION------------------------------------------**/
@@ -242,13 +285,13 @@ figure
 		text-align: center 
 		li 
 			display : inline-block
-			padding : 0 9px 
+			padding : 0 2px 
 			position: relative
 			a 
 				background     : black 
 				color          : white
 				display        : block 
-				padding        : 6px 1.7em
+				padding        : 6px 22px
 				text-decoration: none
 				+border-radius( 10px )
 				+box-shadow( inset 0 0 0 0 black )
@@ -350,6 +393,7 @@ figure
 			img 
 				height: auto !important
 				+transition( all 500ms ease )
+				+transform-style( inherit !important )
 			//Hover image
 			&:hover 
 				img 
@@ -670,6 +714,33 @@ figure
 					color        : white  
 
 /***************************************************************************************/
+/**- PÁGINA PROMOCIONES  -------------------------------------------**/
+/***************************************************************************************/
+
+//Seccion
+.pagePromocion
+	background     : url("../images/pages/promocion/promociones_choferes_remplazo_peru_lima_fondo.jpg") no-repeat
+	background-size: cover 
+	border-bottom  : 60px solid $satelital_gray_semioscuro
+	padding        : 44px 0 5px
+
+	//Imagenes
+	img 
+		height   : auto 
+		max-width: 100%
+
+	//Titulos
+	h2
+		color    : $satelital_red
+		font-size: 24px 
+
+//Animacion dibujo
+.pagePromocion__animation
+	bottom  : -20px
+	position: absolute
+	right   : 0
+
+/***************************************************************************************/
 /**- PÁGINA TARIFARIO  -------------------------------------------**/
 /***************************************************************************************/
 
@@ -789,6 +860,75 @@ figure
 			+scale( 1.2 )
 
 
+/***************************************************************************************/
+/**- PÁGINA CONTACTO  -------------------------------------------**/
+/***************************************************************************************/
+
+//+Seccion de Datos
+.pageContacto__info
+	background     : url("../images/pages/contacto/contacto_choferes_remplazo_peru_lima_fondo.jpg") no-repeat
+	background-size: cover 
+	border-bottom  : 31px solid $satelital_gray_semioscuro
+
+//++Lista de Datos
+.pageContacto__info__list
+	color          : black
+	font-size      : 15px
+	line-height    : 1em
+	list-style-type: none
+	li 
+		margin: 0 auto 20px
+		//Imagen 
+		img 
+			display  : inline-block
+			margin   : 0 10px 0 -40px 
+			max-width: 26px
+
+//++Sección de Formulario
+.pageContacto__form-section
+	background: $satelital_yellow
+	padding   : 24px 0 
+//+++El Formulario
+.pageContacto__form  
+	+border-radius( 30px 0px 30px 0px )
+	+box-shadow( 3px 3px 6px )
+	background: $satelital_red
+	padding   : 43px 20px
+	//Inputs yTextarea
+	input, textarea
+		+border-radius( 8px )
+		border : 0
+		margin : 0 auto 13px 
+		outline: 0 !important 
+		padding: 4px 8px 
+		width  : 100%
+	//Textarea
+	textarea
+		height    : 80px 
+		max-height: 80px 
+	//Botón Enviar formulario
+	.btn__send-form 
+		+border-radius( 5px )
+		+transition( all 500ms ease )
+		background     : white
+		color          : black
+		display        : inline-block
+		font-size      : 15px
+		padding        : 9px 25px
+		text-decoration: none
+		//Hover
+		&:hover 
+			+scale( 1.1 )
+
+// MAPA [ SECTION MAPA ]
+.pageContacto__map-section
+	margin: 40px auto 0
+
+//Id mapa
+#canvas-map
+	height: 344px 
+	width : 100%
+
 
 
 /***************************************************************************************/
@@ -799,6 +939,7 @@ figure
 	background     : url("../images/footer/fondo_footer_service_satelital_lima.png") no-repeat
 	background-size: cover
 	color          : white 
+	margin         : 28px auto 0
 	padding        : 106px 0 18px
 
 /* Item de Footer */
@@ -810,16 +951,7 @@ figure
 	p 
 		font-size: 15px
 		margin   : 0 auto 
-	/* text web */
-	.text-web
-		color  : white
-		display: block
-		span 
-			font-size  : 20px
-			font-weight: 600
-		&:hover
-			text-decoration: none
-			animation      : expand 950ms ease infinite
+
 
 /* Redes Sociales */
 .mainFooter__social-links
@@ -847,3 +979,91 @@ figure
 	margin   : 55px auto 0 
 	a 
 		color: white 
+
+
+/***************************************************************************************/
+/**- RESPONSIVE UTILITIES   -------------------------------------------**/
+/***************************************************************************************/
+
+//Min width 568px
+@media ( max-width: 568px )
+		
+	//SECCIONES COMUNES
+	//++ Banner de Servicio
+	.pageCommon__banner-services
+		padding: 10px 0
+		//Titulo
+		h2 
+			margin: 0 auto 10px
+
+	//HEADER
+	.mainHeader
+		background: $satelital_red
+		left      : 0
+		position  : fixed 
+		right     : 0
+		top       : 0 
+		z-index   : 999999
+		//Logo
+		.logo 
+			max-width: 130px
+		//Icon Header
+		.icon-header
+			color    : white 
+			cursor   : pointer
+			font-size: 40px 
+			margin   : 0 23px 
+	
+	//NAVEGACIÓN PRINCIPAL
+	.mainNav 
+		ul 
+			li
+				display: block 
+				a 
+					+border-radius( 0 )
+					text-transform: uppercase
+					padding       : 15px 0 
+
+				//Hover 
+				&:hover 
+					.sub-menu 
+						max-height: 100vh 
+						top       : 0 
+
+				//Submenu
+				.sub-menu
+					+opacity( 1 )
+					left      : 0
+					max-height: 0
+					overflow  : hidden
+					position  : relative
+					top       : 0
+					visibility: visible
+					width     : auto
+					li 
+						a 
+							font-size: 13px
+
+	
+	//INICIO DEL SLIDER HOME
+	.pageInicio__slider 
+		.carousel-inner 
+			.carousel-item 
+				.carousel-caption
+					top: 20px
+					//Titulos y subtitulo
+					h3 
+						font-size: 20px
+					p 
+						font-size: 15px
+
+	//CAROUSEL SERVICIOS HOME
+	.pageInicio__slider-servicios
+		margin: 34px auto
+		//Artículo del Servicio
+		.item-servicio
+			min-height: 420px
+
+	// SECCION INICIO MISCELANEO CAROUSEL CLIENTES
+	.pageInicio__clients-gallery
+		margin: 0 auto 25px

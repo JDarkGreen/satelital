@@ -6,7 +6,7 @@
 		<div class="container">
 			<div class="row container-flex align-content text-xs-center">
 
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-md-4">
 					<!-- Redes Sociales -->
 					<section class="mainFooter__item">
 						<!-- Titulo --> <h2><?php _e('Síguenos:' , LANG ); ?></h2>
@@ -39,7 +39,7 @@
 					</section> <!-- /.mainFooter__item -->
 				</div> <!-- /.col-xs-4 -->
 
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-md-4">
 					<section class="mainFooter__item">
 						<!-- Dirección -->
 						<?php if( isset($options['contact_address']) && !empty($options['contact_address']) ) : ?>
@@ -59,7 +59,7 @@
 					</section> <!-- /.mainFooter__item -->
 				</div>  <!-- /.col-xs-4 -->
 
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-md-4">
 					<section class="mainFooter__item">
 						<a href="<?= site_url(); ?>" class="text-web">
 							www.<span>issatelital</span>.com</a>
@@ -75,7 +75,11 @@
 		</div> <!-- /.container -->
 	</footer> <!-- /.mainFooter -->
 
+	</div> <!-- /#sb-slidebar -->
+
 	<?php wp_footer(); ?>
+
+	<script> var url = "<?= THEMEROOT ?>"; </script>
 </body>
 </html>
 

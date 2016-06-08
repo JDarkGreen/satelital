@@ -19,9 +19,13 @@
 				);
 				$promociones = get_posts( $args );
 				if( !empty($promociones) ) : foreach( $promociones as $promocion ) : 
+
+					/* Conseguir página promociones */
+					$page_promocion = get_page_by_title('Promociones');
+
 			?> <!-- Item Promoción -->
 				<article class="item-promocion">
-					<a href="<?= get_permalink( $promocion->ID ); ?>">
+					<a href="<?= get_permalink( $page_promocion->ID ); ?>">
 						<!-- Imagen --> <?php if( has_post_thumbnail( $promocion->ID ) ) : 
 						echo get_the_post_thumbnail( $promocion->ID, 'full', array('class'=>'img-fluid') ); 
 						endif; ?>

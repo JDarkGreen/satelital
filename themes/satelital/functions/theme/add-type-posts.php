@@ -52,29 +52,6 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-exerpt-view',
 	);	
 
-	/*|>>>>>>>>>>>>>>>>>>>> TRABAJOS REALIZADOS  <<<<<<<<<<<<<<<<<<<<|*/
-	
-	$labels3 = array(
-		'name'               => __('Trabajos Realizados'),
-		'singular_name'      => __('Trabajo Realizado'),
-		'add_new'            => __('Nuevo Trabajo Realizado'),
-		'add_new_item'       => __('Agregar nuevo Trabajo Realizado'),
-		'edit_item'          => __('Editar Trabajo Realizado'),
-		'view_item'          => __('Ver Trabajo Realizado'),
-		'search_items'       => __('Buscar Trabajo Realizados'),
-		'not_found'          => __('Trabajo Realizado no encontrado'),
-		'not_found_in_trash' => __('Trabajo Realizado no encontrado en la papelera'),
-	);
-
-	$args3 = array(
-		'labels'      => $labels3,
-		'has_archive' => true,
-		'public'      => true,
-		'hierachical' => false,
-		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes'),
-		'taxonomies'  => array('post-tag','category'),
-		'menu_icon'   => 'dashicons-schedule',
-	);
 
 	/*|>>>>>>>>>>>>>>>>>>>> CLIENTES  <<<<<<<<<<<<<<<<<<<<|*/
 	
@@ -100,52 +77,6 @@ function create_post_type(){
 		'menu_icon'   => 'dashicons-money',
 	);	
 
-	/*|>>>>>>>>>>>>>>>>>>>> GALERÍA DE IMÁGENES  <<<<<<<<<<<<<<<<<<<<|*/
-	
-	$labels5 = array(
-		'name'               => __('Galería Imágenes'),
-		'singular_name'      => __('Imagenen'),
-		'add_new'            => __('Nuevo Imagen'),
-		'add_new_item'       => __('Agregar nuevo Imagen'),
-		'edit_item'          => __('Editar Imagen'),
-		'view_item'          => __('Ver Imagen'),
-		'search_items'       => __('Buscar Imagen'),
-		'not_found'          => __('Imagen no encontrada'),
-		'not_found_in_trash' => __('Imagen no encontrada en la papelera'),
-	);
-
-	$args5 = array(
-		'labels'      => $labels5,
-		'has_archive' => true,
-		'public'      => true,
-		'hierachical' => false,
-		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes'),
-		'taxonomies'  => array('post-tag','category'),
-		'menu_icon'   => 'dashicons-index-card',
-	);
-	/*|>>>>>>>>>>>>>>>>>>>> GALERÍA DE VIDEOS  <<<<<<<<<<<<<<<<<<<<|*/
-	
-	$labels6 = array(
-		'name'               => __('Galería Videos'),
-		'singular_name'      => __('Video'),
-		'add_new'            => __('Nuevo Video'),
-		'add_new_item'       => __('Agregar nuevo Video'),
-		'edit_item'          => __('Editar Video'),
-		'view_item'          => __('Ver Video'),
-		'search_items'       => __('Buscar Video'),
-		'not_found'          => __('Video no encontrado'),
-		'not_found_in_trash' => __('Video no encontrado en la papelera'),
-	);
-
-	$args6 = array(
-		'labels'      => $labels6,
-		'has_archive' => true,
-		'public'      => true,
-		'hierachical' => false,
-		'supports'    => array('title','editor','excerpt','custom-fields','thumbnail','page-attributes'),
-		'taxonomies'  => array('post-tag','category'),
-		'menu_icon'   => 'dashicons-video-alt2',
-	);
 
 	/*|>>>>>>>>>>>>>>>>>>>> PROMOCIONES  <<<<<<<<<<<<<<<<<<<<|*/
 	
@@ -175,10 +106,7 @@ function create_post_type(){
 	/*|>>>>>>>>>>>>>>>>>>>> REGISTRAR  <<<<<<<<<<<<<<<<<<<<|*/
 	register_post_type( 'banner'   , $args  );
 	register_post_type( 'servicio' , $args2 );
-	register_post_type( 'works' , $args3 );
 	register_post_type( 'cliente' , $args4 );
-	register_post_type( 'galeria-images' , $args5 );
-	register_post_type( 'galeria-videos' , $args6 );
 	register_post_type( 'promocion' , $args7 );
 	
 	flush_rewrite_rules();

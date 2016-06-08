@@ -26,6 +26,9 @@ function load_custom_scripts()
 	wp_enqueue_script('parsley', THEMEROOT . '/js/parsley.min.js', array('jquery'), '2.3.11', true);
 	wp_enqueue_script('p_idioma_es', THEMEROOT . '/js/i18n/es.js', '' , false , true);
 
+  	//cargar sbslidebar js 
+	wp_enqueue_script('slidebars', THEMEROOT . '/js/slidebars.min.js', array('jquery'), '0.10.3', true);
+
 	//script
 	wp_enqueue_script('custom_script', THEMEROOT . '/js/script.js', array('jquery'), false, true);
 

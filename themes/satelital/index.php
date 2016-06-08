@@ -6,7 +6,7 @@
 ?>
 
 <!-- Banner Home de Presentación -->
-<section class="pageInicio__banner-presentation relative">
+<section class="pageInicio__banner-presentation relative hidden-xs-down">
 	<div class="container">
 	</div> <!-- /.container -->
 </section> <!-- /.pageInicio__banner-presentation -->
@@ -23,7 +23,7 @@
 		<div class="relative">
 			
 			<!-- Wrapper contenedor de items -->
-			<div id="carousel-servicios-home" class="js-carousel-gallery" data-items="3" data-margins="16" data-dots="">
+			<div id="carousel-servicios-home" class="js-carousel-gallery" data-items="3" data-items-responsive="1" data-margins="16" data-dots="">
 				<?php  /* Extraer todo los servicios disponibles */ 
 					$args = array(
 						'order'          => 'ASC',
@@ -46,12 +46,12 @@
 				<?php endforeach; else: echo "Actualizando Contenido"; endif; ?>
 			</div> <!-- /. js-carousel-gallery -->
 
-			<!-- Flechas -->
-			<a href="#" class="js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="carousel-servicios-home">
+			<!-- Flechas Ocultar en Mobile -->
+			<a href="#" class="hidden-xs-down js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="carousel-servicios-home">
 				<i class="fa fa-chevron-left" aria-hidden="true"></i>
 			</a> <!-- /-arrowCommon__slider arrowCommon__slider--prev -->
 
-			<a href="#" class="js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="carousel-servicios-home">
+			<a href="#" class="hidden-xs-down js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="carousel-servicios-home">
 				<i class="fa fa-chevron-right" aria-hidden="true"></i>
 			</a> <!-- /-arrowCommon__slider arrowCommon__slider--next -->
 
@@ -69,7 +69,7 @@
 <!-- Linea separadora --> <div id="separator-line" class="relative"></div>
 
 <!-- Sección Mapa - Conductor -->
-<section class="pageInicio__map">
+<section class="pageInicio__map hidden-xs-down">
 	<!-- Titulo --> <h2 class="pageCommon__section-title text-xs-center"><?php _e('Las 24 Horas' , LANG ); ?></h2>
 	<!-- Contenedor Posicion relativa -->
 	<section class="relative">
