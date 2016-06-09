@@ -256,7 +256,9 @@ figure
 
 //Sección
 .mainHeader
-	padding: 10px 0
+	padding : 10px 0
+	position: relative
+	z-index : 9 
 
 //Información
 .mainHeader__paragraph
@@ -996,6 +998,10 @@ figure
 		h2 
 			margin: 0 auto 10px
 
+	//ID SLIDEBAR
+	#sb-site
+		padding: 82px 0 0 0
+
 	//HEADER
 	.mainHeader
 		background: $satelital_red
@@ -1012,7 +1018,7 @@ figure
 			color    : white 
 			cursor   : pointer
 			font-size: 40px 
-			margin   : 0 23px 
+			margin   : 0 22px 
 	
 	//NAVEGACIÓN PRINCIPAL
 	.mainNav 
@@ -1044,7 +1050,6 @@ figure
 						a 
 							font-size: 13px
 
-	
 	//INICIO DEL SLIDER HOME
 	.pageInicio__slider 
 		.carousel-inner 
@@ -1062,8 +1067,25 @@ figure
 		margin: 34px auto
 		//Artículo del Servicio
 		.item-servicio
-			min-height: 420px
+			min-height: 245px
+			//Imagen
+			figure 
+				max-width: 120px
 
 	// SECCION INICIO MISCELANEO CAROUSEL CLIENTES
 	.pageInicio__clients-gallery
 		margin: 0 auto 25px
+
+	//FOOTER
+
+	//Main Footer Info
+	.mainFooter__item
+		margin: 0 auto 15px
+
+	//Redes Sociales Menu
+	.mainFooter__social-links 
+		li 
+			a
+				font-size: 35px 
+				height   : 45px
+				width    : 45px 

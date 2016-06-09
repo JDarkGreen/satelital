@@ -37,8 +37,14 @@
 				?> <!-- Item Articulo -->
 					<article class="item-servicio text-xs-center relative">
 						<!-- Imagen  --> <figure><?= get_the_post_thumbnail( $servicio->ID , 'full' , array('img-fluid center-block') ); ?></figure>
+
 						<!-- titulo --> <h3 class="text-uppercase"><?php _e( $servicio->post_title , LANG ); ?></h3>
-						<!-- Extracto --> <?= apply_filters('the_content' , $servicio->post_excerpt ); ?>
+
+						<!-- Extracto --> 
+						<div class="hidden-xs-down">
+							<?= apply_filters('the_content' , $servicio->post_excerpt ); ?>
+						</div> <!-- /.hidden-xs-down -->
+
 						<!-- Botón ver más --> <a href="#" class="pageCommun__btn-read-more center-block">
 							<?php _e( "click aquí" , LANG ); ?>
 						</a>
