@@ -52,7 +52,7 @@
 			<div class="row">
 
 				<!-- Seccion de Información -->
-				<div class="col-xs-8">
+				<div class="col-xs-12 col-md-8">
 					<!-- Titulo de la sección -->
 					<h2 class="pageServicio__title-section text-uppercase"><?php _e( $post->post_title , LANG ); ?></h2>
 					<!-- Contenido -->
@@ -94,12 +94,12 @@
 
 							</div> <!-- /.js-carousel-gallery -->
 
-							<!-- Flechas -->
-							<a href="#" class="js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="carousel-servicios-gallery">
+							<!-- Flechas Ocultar en version mobile -->
+							<a href="#" class="hidden-xs-down js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="carousel-servicios-gallery">
 								<i class="fa fa-chevron-left" aria-hidden="true"></i>
 							</a> <!-- /-arrowCommon__slider arrowCommon__slider--prev -->
 
-							<a href="#" class="js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="carousel-servicios-gallery">
+							<a href="#" class="hidden-xs-down js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="carousel-servicios-gallery">
 								<i class="fa fa-chevron-right" aria-hidden="true"></i>
 							</a> <!-- /-arrowCommon__slider arrowCommon__slider--next -->
 
@@ -110,7 +110,7 @@
 				</div> <!-- /.col-xs-8 -->
 
 				<!-- Seccion de Categorías -->
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-md-4">
 					<!-- Incluir archivo template de Servicios -->
 					<aside class="pageServicio__services text-uppercase">
 						<!-- Titulo --> <h3 class=""><?php _e('servicios', LANG ); ?></h3>

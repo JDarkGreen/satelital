@@ -111,7 +111,7 @@
 </header> <!-- /.mainHeader -->
 
 <!-- Contenedor Izquierda Version Mobile -->
-<aside class="sb-slidebar sb-left sb-style-push">
+<aside class="sb-slidebar sb-left sb-style-push" data-sb-width="67%">
 	<!-- Navegación Principal -->
 	<nav class="mainNav">
 		<?php wp_nav_menu(
@@ -122,6 +122,12 @@
 		?>						
 	</nav> <!-- /.mainNav -->  
 </aside> <!-- /.sb-slidebar sb-left sb-style-push -->
+
+<!-- Contenedor Derecha Version Mobile -->
+<aside class="sb-slidebar sb-right sb-style-ovelay">
+	<!-- Incluir las categorias de los posts -->
+	<?php include( locate_template("partials/categories-post.php") ); ?>
+</aside> <!-- /.sb-slidebar sb-right sb-style-push -->
 
 <!-- Contenedor version mobile libreria sliderbar js -->
 <div id="sb-site" class="">

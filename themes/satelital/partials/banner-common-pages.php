@@ -4,7 +4,8 @@
 	
 	<!-- BANNER DE LA PAGINA -->
 	<section class="pageCommon__banner relative">
-		<figure>
+		<!-- Ocultar en mobile -->
+		<figure class="hidden-sm-down">
 			<!-- Conseguir el banner por defecto -->
 			<?php $img_banner = get_post_meta($banner->ID, 'input_img_banner_'.$banner->ID , true); 
 				if( !empty($img_banner) && $img_banner != -1 ) :

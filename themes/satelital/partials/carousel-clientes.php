@@ -9,7 +9,7 @@
 		<!-- Galería de Clientes -->
 		<div class="relative">
 			<!-- Wrapper -->
-			<section id="pageInicio__clients-gallery" class="pageInicio__clients-gallery js-carousel-gallery" data-items="6" data-margins="50" data-dots="false">
+			<section id="pageInicio__clients-gallery" class="pageInicio__clients-gallery js-carousel-gallery" data-items="6" data-items-responsive="2" data-margins="50" data-dots="false">
 				<?php  
 					/* Extraer los clientes: */
 					$args = array(
@@ -26,12 +26,12 @@
 				?>
 			</section> <!-- /.pageInicio__clients-gallery -->
 
-			<!-- Flechas de Carousel -->
-			<a href="#" class="js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="pageInicio__clients-gallery">
+			<!-- Flechas de Carousel Ocultar en mobile -->
+			<a href="#" class="hidden-xs-down js-carousel-prev js-arrow-carousel arrowCommon__slider arrowCommon__slider--prev" data-slider="pageInicio__clients-gallery">
 				<i class="fa fa-chevron-left" aria-hidden="true"></i>
 			</a>					
 
-			<a href="#" class="js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="pageInicio__clients-gallery">
+			<a href="#" class="hidden-xs-down js-carousel-next js-arrow-carousel arrowCommon__slider arrowCommon__slider--next" data-slider="pageInicio__clients-gallery">
 				<i class="fa fa-chevron-right" aria-hidden="true"></i>
 			</a>
 			

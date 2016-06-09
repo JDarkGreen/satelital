@@ -27,8 +27,8 @@
 			<!-- Titulo -->
 			<h2 class="text-uppercase"> <strong> <?php _e('disfruta de nuestras promociones !!!' , LANG ); ?> </strong></h2> <!-- /. -->
 
-			<!-- Imagen animacion -->
-			<figure class="pagePromocion__animation">
+			<!-- Imagen animacion Ocultar en mobile -->
+			<figure class="pagePromocion__animation hidden-xs-down">
 				<img src="<?= IMAGES ?>/pages/promocion/promociones_choferes_remplazo_peru_lima_vector.png" alt="promociones_choferes_remplazo_peru_lima_vector" class="img-fluid" />
 			</figure> <!-- /.pagePromocion__animation -->
 

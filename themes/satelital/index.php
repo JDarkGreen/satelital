@@ -1,13 +1,26 @@
 
 <!-- Header -->
 <?php 
+	global $post; //Obtener Datos de Pagina
+
 	get_header(); 
 	$options = get_option('satelital_custom_settings'); 
 ?>
 
 <!-- Banner Home de Presentación -->
 <section class="pageInicio__banner-presentation relative hidden-xs-down">
+	<!-- Obtener Imagen destacada de pagina inicio  -->
+	<?php 
+		if( has_post_thumbnail( $post->ID ) ) : 
+			echo get_the_post_thumbnail( $post->ID , 'full' , array('class'=>'img-fluid') );
+		else : 
+	?>
+		<!-- Si no hay imagen destacada entonces tomar esta imagen -->
+		<img src="<?= IMAGES ?>/pages/inicio/incio_baner_superior_service_satelital_lima.png" alt="vehiculos-servicios-satelital" class="img-fluid" /> 	
+	<?php endif; ?>
 	<div class="container">
+		<!-- Animacion de Imagen  -->
+		<figure class="pageInicio__animation"></figure>
 	</div> <!-- /.container -->
 </section> <!-- /.pageInicio__banner-presentation -->
 

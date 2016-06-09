@@ -23,8 +23,9 @@
 		<div class="container">
 			<div class="row container-flex align-content">
 
-				<!-- Datos -->
-				<div class="col-xs-4">
+				<!-- Datos /* Nota alineacion en el centro version mobile pero en desktop alineado 
+				a la izquierda */ -->
+				<div class="col-xs-12 col-md-4 text-xs-center text-md-left">
 					<!-- Titulo  --> <h2 class="pageCommon__section-title"> <?php _e('Datos', LANG ); ?></h2>
 					<!-- Lista de Datos -->
 					<ul class="pageContacto__info__list">
@@ -49,10 +50,13 @@
 					<a href="http://localhost/satelital" class="text-web text-web--red">
 					www.<span>issatelital</span>.com</a>
 
+					<!-- Espacio Solo visible en mobile -->
+					<p class="hidden-sm-up"></p>
+
 				</div> <!-- /.col-xs-4 -->
 
 				<!-- Llamada -->
-				<div class="col-xs-4">
+				<div class="col-xs-12 col-md-4">
 					<section class="sectionCommon__call text-xs-center">
 						<h2 class=""><?php _e('Llámenos', LANG ); ?></h2>
 						<?php if( isset($options['contact_tel']) && !empty($options['contact_tel']) ): ?>
@@ -64,8 +68,8 @@
 					</section> <!-- /.sectionCommon__call -->
 				</div><!-- /.col-xs-4 -->
 				
-				<!-- Imagen -->
-				<div class="col-xs-4">
+				<!-- Imagen Ocultar en Mobile -->
+				<div class="col-xs-4 hidden-xs-down">
 					<img src="<?= IMAGES ?>/pages/contacto/contacto_choferes_remplazo_peru_lima_vector.png" alt="contacto_choferes_remplazo_peru_lima_vector" class="img-fluid" />
 				</div> <!-- /.col-xs-4 -->
 
@@ -81,19 +85,19 @@
 			<form id="form-contacto" action="" class="pageContacto__form" method="post">
 				<div class="row">
 					<!-- Nombre -->
-					<div class="col-xs-6">
+					<div class="col-xs-12 col-md-6">
 						<input type="text" id="input_nombre" name="input_nombre" placeholder="Nombre" required />
 					</div> <!-- /.col-xs-6 -->
 					<!-- Correo -->
-					<div class="col-xs-6">
+					<div class="col-xs-12 col-md-6">
 						<input type="email" id="input_email" name="input_email" placeholder="Email" required="" data-parsley-type-message="Escribe un email válido" />
 					</div> <!-- /.col-xs-6 -->
 					<!-- Telefonos -->
-					<div class="col-xs-6">
+					<div class="col-xs-12 col-md-6">
 						<input type="text" id="input_tel" name="input_tel" placeholder="Teléfono" data-parsley-type='digits' data-parsley-type-message="Solo debe contener números" />
 					</div> <!-- /.col-xs-6 -->
 					<!-- Servicios -->
-					<div class="col-xs-6">
+					<div class="col-xs-12 col-md-6">
 						<input type="text" id="input_servicio" name="input_servicio" placeholder="Servicio" required />
 					</div> <!-- /.col-xs-6 -->
 					<!-- Mensaje -->

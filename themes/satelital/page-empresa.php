@@ -13,10 +13,12 @@
 <?php $banner = $post; include( locate_template("partials/banner-common-pages.php") ); ?>
 
 <!-- Wrapper de Página  -->
-<section class="pageNosotros">
+<section class="pageNosotros relative">
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-8">
+      
+      <!-- Contenido Principal -->
+			<div class="col-xs-12 col-md-8">
 			
 				<!-- Título de Sección  --> <h2 class="pageCommon__section-title"><?php _e('Nosotros', LANG ); ?></h2>
 
@@ -60,8 +62,13 @@
   				</div> <!-- /.panel panel-default -->
 
   			</section> <!-- /.accordion_aptitudes -->
-			
 			</div> <!-- /.col-Xs-8 -->
+      
+      <!-- Imagen Animacion Ocultar en Mobile -->
+      <figure class="pageNosotros__animation hidden-md-down">
+        <img src="<?= IMAGES ?>/pages/empresa/empresa_choferes_remplazo_peru_lima_vector.png" alt="nosotros-satelital-servicio-conductores" class="img-fluid" />
+      </figure> <!-- /.pageNosotros__animation -->
+
 		</div> <!-- /.row -->
 	</div> 	<!-- /.container -->
 </section> <!-- /.pageNosotros -->
