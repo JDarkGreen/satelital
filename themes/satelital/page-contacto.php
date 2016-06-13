@@ -108,7 +108,7 @@
 
 				<!-- Boton Enviar -->
 				<div class="pull-xs-right">
-					<button href="#" type="submit" class="btn__send-form"><?php _e('Enviar' , LANG ); ?></button> 
+					<button type="submit" class="btn__send-form"><?php _e('Enviar' , LANG ); ?></button> 
 				</div> <!-- /.pull-xs-right -->
 
 				<!-- Limpiar floats --> <div class="clearfix"></div>
